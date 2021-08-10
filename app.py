@@ -15,4 +15,4 @@ __email__ = 'jake@baruek.net'
 from app import create_app
 
 
-flawlys = create_app()
+flawlys = create_app(debug=True)

@@ -1,17 +1,35 @@
+import logging
 import os
 
 from dash import Dash
 from flask import Flask
 from flask.helpers import get_root_path
 from flask_login import login_required
-
+from flask.logging import default_handler
 from config import Config
 
 
-def create_app():
+def create_app(debug=False):
+
     flawlys = Flask(__name__)
     # Load default configurations from config.py
     flawlys.config.from_object(Config)
+
+    # Setup the application logger configuration
+    log_level = ""
+    #if debug:
+    #    log_level = "DEBUG"
+    #else:
+    #    log_level = "INFO"
+#
+    #for logger in (
+    #        flawlys.logger,
+    #        #logging.getLogger('werkzeug'),
+    #        #logging.getLogger('sqlalchemy'),
+    #        # logging.getLogger('psycopg2'),
+    #):
+    #    logger.addHandler(default_handler)
+    #    logger.setLevel(log_level)
 
     from app.dash.layout import layout as layout_main
     from app.dash.callbacks import register_callbacks as register_callbacks_main
@@ -19,7 +37,7 @@ def create_app():
                       server_url_path='',
                       title='Main Dashboard',
                       layout=layout_main,
-                      register_callbacks=register_callbacks_main(flawlys)
+                      register_callbacks=register_callbacks_main
                       )
 
     from app.dash_ec2_ami.layout import layout as layout_ec2_ami
@@ -28,7 +46,7 @@ def create_app():
                       server_url_path='ami',
                       title='EC2 AMI Dashboard',
                       layout=layout_ec2_ami,
-                      register_callbacks=register_callbacks_ec2_ami(flawlys)
+                      register_callbacks=register_callbacks_ec2_ami
                       )
 
     register_extensions(flawlys)
