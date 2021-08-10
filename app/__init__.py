@@ -96,6 +96,6 @@ def register_extensions(app_obj):
 
 
 def register_blueprints(app_obj):
-    from app.server import server_bp
+    from app.wsgi import server_bp
 
     app_obj.register_blueprint(server_bp)

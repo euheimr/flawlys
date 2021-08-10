@@ -19,7 +19,7 @@ from setuptools import setup, find_packages
 setup(
     name='flawlys',
     version=__version__,
-    url='https://gitlab.com/euheimr/flawlys',
+    url='https://github.com/euheimr/flawlys',
     license='BSD-3',
     author=__author__,
     author_email=__email__,
@@ -33,7 +33,7 @@ setup(
         'License :: OSI Approved :: BSD-3 License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     install_requires=[
         'flask',
         'boto3',

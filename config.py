@@ -5,7 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 def get_sqlite_uri():
     db_name = os.environ['DATABASE_URL'].split('/')[-1]
-    return f'sqlite:///{basedir}/{db_name}'
+    return f'sqlite:////{basedir}/instances/{db_name}.db'
 
 
 class Config(object):
